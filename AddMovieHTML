@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+  max-width: 300px;
+  margin: auto;
+}
+</style>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content= "width=device-width,initial-scale=1">
+<title>Add Movie</title>
+</head>
+<body>
+<style>
+body {background-color: #363d38; }
+</style>
+
+
+<div id="sansimg">
+<img src="SansLogo.jpg" border="10">
+</div>
+<br></br>
+<br></br>
+<form action="/action_page.php">
+  
+<label for="Title">Title:</label>
+<input type="text" value="" name="Title" maxlength="200"><br>
+
+<label for="ReleaseDate">Release Date:</label>
+<form action="releaseDate.php" method="post" name="releaseDate">
+
+<input type="date" value="" name="ReleaseDate1"><br>
+
+<label for="Rating">Rating:</label>
+<input type="number" value="" name="Rating" maxlength="1" min="1" max="5">
+
+<br>
+
+<button type="submit" id="mysubmit" disabled="true">Add Movie</button><br>
+
+</form>
+</body>
+
+<script>
+function doCheck(){
+    var allFilled = true;
+    
+    var inputs = document.getElementsByTagName('input');
+    for(var i=0; i<inputs.length; i++){
+        if(inputs[i].type == "text" && inputs[i].value == ''){
+            allFilled = false;
+            break;
+        }
+    }
+    
+    document.getElementById("mysubmit").disabled = !allFilled;
+}
+
+window.onload = function(){
+    var inputs = document.getElementsByTagName('input');
+    for(var i=0; i<inputs.length; i++){
+        if(inputs[i].type == "number"){
+            inputs[i].onkeyup = doCheck;
+            inputs[i].onblur = doCheck;
+        }
+    }
+};
+</script>
+</html>
