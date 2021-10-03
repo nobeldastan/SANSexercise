@@ -1,0 +1,80 @@
+public class sansInstituteAssesment {
+
+
+	WebDriver driver;
+
+	@Before
+
+
+	public void beforeMethod() {
+
+
+		//Opens up HTML SANS page		
+
+		WebDriverManager.chromedriver().setup(); 
+
+		driver = new ChromeDriver();
+		driver.get("file:///Users/nobeldastan/Desktop/ADD%20MOVIE/addmovie.html");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	@Test
+
+	// Search for The Avengers movie
+
+	public void addMovie() throws InterruptedException, ParseException { 
+
+		String searchMovie = "The Avengers";
+		WebElement searchBox = driver.findElement(By.xpath("/html/body/form/input[1]"));
+		searchBox.sendKeys(searchMovie);
+		
+
+		// Insert valid date
+
+//		Actions action1 = new Actions(driver);
+		WebElement dateBox = driver.findElement(By.xpath("/html/body/form/input[2]"));
+		dateBox.sendKeys("09252013");
+		
+		
+		dateBox.sendKeys(Keys.TAB);
+		
+
+
+		// Insert valid Rating
+		
+		
+		WebElement ratingBox = driver.findElement(By.xpath("/html/body/form/input[3]"));
+		
+		ratingBox.sendKeys("2");
+		
+		
+		for(int i = 0; i >= 5; i++) {
+			
+			if (i >= 5) {
+			
+				System.out.println("valid rating");
+				
+			}else {
+				System.out.println("input valid rating");
+			}
+		}
+		
+
+
+		//Click Add Movie button
+
+
+		WebElement submitButton = driver.findElement(By.id("mysubmit"));
+		
+		submitButton.click();
+	}
+
+
+@After
+	
+	public void afterMethod() {
+		
+		driver.close();
+	}
+}
